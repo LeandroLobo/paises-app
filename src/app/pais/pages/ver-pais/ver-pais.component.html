@@ -1,1 +1,59 @@
-<p>ver-pais works!</p>
+<div *ngIf="!pais; else divPais"
+  class="alert alert-info">
+  Cargando información...
+</div>
+
+<ng-template #divPais>
+
+  <div class="row">
+    <div class="col-12">
+      <h1>País: <small>{{pais.name}}</small></h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img [src]="pais.flag" [alt]="pais.name" class="img-thumbnail">
+    </div>
+
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Capital: </strong>{{pais.capital}}
+        </li>
+        <li class="list-group-item">
+          <strong>Población: </strong>{{pais.population | number}} habitantes
+        </li>
+        <li class="list-group-item">
+          <strong>Región: </strong>{{pais.region}}
+        </li>
+        <li class="list-group-item">
+          <strong>Código alpha2: </strong>{{pais.alpha2Code}}
+        </li>
+        <li class="list-group-item">
+          <strong>Código alpha3: </strong>{{pais.alpha3Code}}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h3>Traducciones</h3>
+  <div class="row">
+    <div class="col">
+      <span class="badge bg-primary m-1">alemán: {{pais.translations.de}}</span>
+      <span class="badge bg-primary m-1">español: {{pais.translations.es}}</span>
+      <span class="badge bg-primary m-1">persa: {{pais.translations.fa}}</span>
+      <span class="badge bg-primary m-1">francés: {{pais.translations.fr}}</span>
+      <span class="badge bg-primary m-1">croata: {{pais.translations.hr}}</span>
+      <span class="badge bg-primary m-1">italiano: {{pais.translations.it}}</span>
+      <span class="badge bg-primary m-1">japones: {{pais.translations.ja}}</span>
+      <span class="badge bg-primary m-1">neerlandés: {{pais.translations.nl}}</span>
+      <span class="badge bg-primary m-1">portugués: {{pais.translations.pt}}</span>
+    </div>
+  </div>
+
+</ng-template>

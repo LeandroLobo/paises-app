@@ -1,0 +1,12 @@
+<form autocomplete="off"
+  (ngSubmit)="emitTermino()" >
+  <input type="text"
+    name="termino"
+    [(ngModel)]="termino"
+    (input)="onKeyPress()"
+    [placeholder]="placeholder"
+    class="form-control">
+  <em *ngIf="invalido" class="alert">
+  Ingrese una palabra
+  </em>
+</form>
