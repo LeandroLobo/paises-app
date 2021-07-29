@@ -35,7 +35,7 @@ export class VerPaisComponent implements OnInit {
     ).subscribe(pais => {
       setTimeout(() => {
         this.pais = pais;
-      }, 1500);
+      }, 1000);
     });
   }
 

@@ -5,7 +5,7 @@ import { Pais } from '../../interfaces/pais.model';
 @Component({
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
-  styles: []
+  styles: ['li { cursor: pointer; }']
 })
 export class PorPaisComponent {
 
@@ -14,6 +14,7 @@ export class PorPaisComponent {
   paises: Pais[] = [];
   termino: string;
   placeholder = 'Buscar país...';
+  paisesSugeridos: Pais[];
 
   constructor(
     private paisService: PaisService
@@ -21,6 +22,7 @@ export class PorPaisComponent {
 
   buscar(termino: string) {
     this.hayError = false;
+    this.paisesSugeridos = [];
     this.termino = termino;
     this.paisService.buscarPais(termino)
       .subscribe(
@@ -37,6 +39,15 @@ export class PorPaisComponent {
 
   sugerencias(termino: string) {
     this.hayError = false;
+    if (termino === '') {
+      this.paisesSugeridos = [];
+      return;
+    }
+    this.paisService.buscarNombrePais(termino)
+      .subscribe(
+        res => this.paisesSugeridos = res.splice(0, 6),
+        err => this.paisesSugeridos = []
+      );
   }
 
 }

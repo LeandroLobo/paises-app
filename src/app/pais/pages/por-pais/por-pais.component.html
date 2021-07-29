@@ -1,16 +1,27 @@
-<h2>Por País</h2>
-<hr>
+<div class="table table-hover animate__animated animate__fadeIn animate__faster">
+  <h2>Por País</h2>
+  <hr>
 
-<div class="row">
-  <div class="col">
-    <app-pais-input
-      [placeholder]="placeholder"
-      (searchEnter)="buscar($event)"
-      (searchDebounce)="sugerencias($event)">
-    </app-pais-input>
+  <div class="row">
+    <div class="col">
+      <app-pais-input
+        [placeholder]="placeholder"
+        (searchEnter)="buscar($event)"
+        (searchDebounce)="sugerencias($event)">
+      </app-pais-input>
+
+      <ul class="list-group">
+        <li *ngFor="let pais of paisesSugeridos"
+            class="list-group-item list-group-item-action"
+            (click)="buscar(pais.name)">
+          {{pais.name}}
+        </li>
+      </ul>
+
+    </div>
   </div>
+  <hr>
 </div>
-<hr>
 
 <div *ngIf="hayError"  class="alert alert-danger">
   <p>No se encontraron resultados para {{termino}}.</p>

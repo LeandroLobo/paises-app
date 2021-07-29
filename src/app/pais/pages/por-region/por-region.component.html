@@ -1,1 +1,33 @@
-<p>por-region works!</p>
+<div class="table table-hover animate__animated animate__fadeIn animate__faster">
+  <h3>Buscar Por región: <small>{{regionActiva | titlecase}}</small></h3>
+  <hr>
+  <h5>Seleccione la región</h5>
+
+  <div class="row">
+    <div class="col">
+      <button *ngFor="let region of regiones"
+              [class]="getCSSClass(region)"
+              (click)="activarRegion(region)">
+        {{region}}
+      </button>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div *ngIf="hayError"  class="alert alert-danger">
+  <p>Hubo un error en la base de datos.</p>
+  <em class="alert">Error Message: {{errorMessage}}</em>
+</div>
+
+<div *ngIf="paises.length <= 0 && !inited"
+  class="alert alert-info">
+  Cargando información...
+</div>
+
+<div class="row" *ngIf="paises.length > 0">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
+
